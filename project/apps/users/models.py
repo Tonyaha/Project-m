@@ -1,4 +1,5 @@
 from django.db import models
+from datetime import datetime
 
 # Create your models here.
 
@@ -6,8 +7,6 @@ from django.db import models
 class BookInfo(models.Model):
     # 图书名称
     btitle = models.CharField(max_length=20)
-    # 出版日期
-    bpub_date = models.DateField()
     # 阅读量
     bread = models.IntegerField(default=0)
     # 评论量

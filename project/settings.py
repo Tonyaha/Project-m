@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
+import socket
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -23,9 +24,40 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'tom6p5&k@d-ceyr&pz_tzl*06+xdhbwkc+1jmfr)hrw@+t%6km'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+#DEBUG = True
+# DEBUG = os.environ.get('DEBUG', 'True') == str(True)
 
-ALLOWED_HOSTS = []
+#ALLOWED_HOSTS = []
+
+
+def get_hostname():
+    system = os.name
+    if system == 'nt':
+        return os.getenv('computername')
+    elif system == 'posix':
+        host = os.popen('echo $HOSTNAME') # ('hostname')
+        try:
+            return host.read()
+        finally:
+            host.close()
+    else:
+        raise RuntimeError('Unkwon hostname')
+
+
+# 主机名相同则为开发环境，不同则为部署环境
+# ALLOWED_HOSTS只在调试环境中才能为空
+print('get_hostname():', get_hostname())
+print('socket.gethostname():', socket.gethostname())
+# print(socket.gethostname() == get_hostname().replace('\n', '')) # 使用hostname时这样就相等
+if socket.gethostname().lower() == get_hostname().lower():
+    DEBUG = True
+    ALLOWED_HOSTS = []
+else:
+    DEBUG = False
+    ALLOWED_HOSTS = [
+        '0.0.0.0',
+    ]
+print(DEBUG, ALLOWED_HOSTS)
 
 
 # Application definition
@@ -38,7 +70,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'project.apps.users',
-    'rest_framework',
+    #'rest_framework',
 ]
 
 middleware = [
@@ -84,17 +116,15 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
+    #'default': {}, # default必须定义
     'default': {
-       'ENGINE': 'django.db.backends.sqlite3',
-       'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-
-    #    'ENGINE': 'django.db.backends.mysql',
-    #    'NAME': 'DataBase', # 数据库名字
-    #    'USER': 'root', # 用户名
-    #    'PASSWORD': 'password', # 用户密码
-    #    'HOST': 'localhost', #数据库所在ip
-    #    'PORT': 3306, # 数据库所在ip的端口
-    }
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'DB', # 数据库名字
+        'USER': 'root', # 用户名
+        'PASSWORD': '1234', # 用户密码
+        'HOST': 'localhost', #数据库所在ip
+        'PORT': 3306, # 数据库所在ip的端口
+    },
 }
 
 
