@@ -1,0 +1,11 @@
+{
+    "python.pythonPath": "C:\\Users\\fieldtech\\Anaconda3\\envs\\py35\\python.exe",
+    "python.linting.pylintEnabled": false,
+    // python 报红色波浪线
+     "python.linting.pylintArgs": [
+         "--load-plugins",
+         "pylint_django"
+     ],
+     "terminal.integrated.shell.windows": "C:\\Program Files\\Git\\bin\\bash.exe",
+     "terminal.integrated.cursorBlinking": true,
+}
