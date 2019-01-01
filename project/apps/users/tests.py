@@ -1,7 +1,10 @@
 from django.test import TestCase
 from datetime import datetime
-from project.apps.users.models import BookInfo
+import unittest
+from project.apps.users.models import Users
+#from project.apps.users.models import BookInfo
 
+@unittest.skip
 # Create your tests here.  user.has_perm('foo.add_bar')
 class TestUsersModels(TestCase):
     def test_users_model(self):
@@ -10,3 +13,10 @@ class TestUsersModels(TestCase):
         #print(book.has_perm('book.add_bar'))
         # for k in book:
         #     print(k, ' ///')
+
+
+class TestUsersModel(TestCase):
+    def test_create(self):
+        # user = Users.create('xmzd')
+        # print(user.name)
+        pass

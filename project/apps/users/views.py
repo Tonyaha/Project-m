@@ -7,9 +7,10 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.http import HttpRequest, HttpResponse, JsonResponse, HttpResponseRedirect
 from django.shortcuts import redirect, render
+
 # Create your views here.
 def index(request):
-    return HttpResponseRedirect('user/login/')
+    return redirect('user/login/')
 
 
 def login(request):

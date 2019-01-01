@@ -1,12 +1,11 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <h4>我叼你妈的</h4>
-</body>
-</html>
+{% extends "users/_base.html" %}
+{% load staticfiles %}
+
+{% block main-body %}
+    <div class="bg-info">
+        <img src="{% static 'image/bg.jpg' %}" alt="">
+    </div>
+    <h3>简单的导航栏实例</h3>
+  <p>导航栏一般放在页面的顶部。</p>
+  <p>我们可以使用 .navbar 类来创建一个标准的导航栏，后面紧跟: .navbar-expand-xl|lg|md|sm 类来创建响应式的导航栏 (大屏幕水平铺开，小屏幕垂直堆叠)。</p>
+{% endblock %}
