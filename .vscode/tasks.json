@@ -4,9 +4,9 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "run",
+            "label": "run-django",
             "type": "shell",
-            "command": "python manage.py runserver",
+            "command": "python3 manage.py runserver",
             "problemMatcher": [
                 "$tsc"
             ],
