@@ -116,15 +116,7 @@ WSGI_APPLICATION = 'project.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 DATABASES = {
-    #'default': {}, # default必须定义
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'DB', # 数据库名字
-        'USER': 'root', # 用户名
-        'PASSWORD': '1234', # 用户密码
-        'HOST': 'localhost', #数据库所在ip
-        'PORT': 3306, # 数据库所在ip的端口
-    },
+    'default': {}, # default必须定义
 }
 
 

@@ -4,16 +4,23 @@ connect('DB', username='xmzd', password='1234')
 
 
 class Users(Document):
-    name = StringField(required=True)
+    account = StringField(required=True)
     password = StringField(required=True)
 
     @classmethod
-    def create(cls,name, pwd):
-        return cls(name=name, password=pwd).save()
+    def create(cls, account, pwd):
+        return cls(account=account, password=pwd).save()
 
     @classmethod
     def get_by_id(cls, uid):
         return cls.objects.with_id(uid)
+
+    @classmethod
+    def get_by_email(cls, email):
+        try:
+            return cls.objects.get(account=email)
+        except DoesNotExist:
+            return None
 
 
 
